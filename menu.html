@@ -1,7 +1,23 @@
-<aside id="sidebar" class="bg-white shadow-md h-screen p-4">
-  <div class="text-[var(--color-primaire)] font-bold text-lg mb-6">DDS Gestion</div>
-  <nav class="space-y-2">
-    <a href="#" data-section="stock" class="block text-gray-700 hover:text-[var(--color-primaire)]">Gestion du stock</a>
-    <a href="#" data-section="stock-table" class="block text-gray-700 hover:text-[var(--color-primaire)]">Stock total</a>
+<aside id="sidebar" class="w-64 h-screen bg-white shadow-md transition-all duration-300 transform sm:translate-x-0 -translate-x-full fixed z-40">
+  <div class="p-6 border-b flex items-center justify-between">
+    <div class="flex items-center space-x-2">
+      <img src="logo.png" alt="Logo DDS" class="h-8 w-8" id="sidebar-logo" />
+      <h1 class="text-xl font-bold text-[#0094D9]" id="menu-title">DDS Gestion</h1>
+    </div>
+    <button id="toggleSidebar" class="hidden sm:block text-[#0094D9] text-2xl ml-4">☰</button>
+  </div>
+  <nav class="p-4 space-y-3">
+    <button data-section="accueil" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+      🏠 <span class="menu-label">Accueil</span>
+    </button>
+    <button data-section="stock" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+      📊 <span class="menu-label">Stock</span>
+    </button>
+    <button data-section="taches" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+      🔧 <span class="menu-label">Tâches</span>
+    </button>
+    <button data-section="devis" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+      📄 <span class="menu-label">Relevés de devis</span>
+    </button>
   </nav>
 </aside>
