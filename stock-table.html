@@ -1,4 +1,3 @@
-
 <section id="stock-table" class="section">
   <div class="text-2xl font-semibold text-gray-800 mb-6">📦 Tableau du stock total</div>
   <div class="overflow-x-auto">
@@ -12,29 +11,42 @@
           <th class="py-3 px-4 text-left">Prix HT</th>
         </tr>
       </thead>
-      <tbody class="text-gray-700 divide-y divide-gray-200">
-        <tr>
-          <td class="py-3 px-4">REF-001</td>
-          <td class="py-3 px-4">Té de cuivre 16</td>
-          <td class="py-3 px-4">28</td>
-          <td class="py-3 px-4">Atelier</td>
-          <td class="py-3 px-4">2.45 €</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4">REF-002</td>
-          <td class="py-3 px-4">Raccord PER 20x27</td>
-          <td class="py-3 px-4">12</td>
-          <td class="py-3 px-4">Camion 1</td>
-          <td class="py-3 px-4">3.10 €</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4">REF-003</td>
-          <td class="py-3 px-4">Tube PVC 100mm</td>
-          <td class="py-3 px-4">7</td>
-          <td class="py-3 px-4">Stock principal</td>
-          <td class="py-3 px-4">4.50 €</td>
-        </tr>
+      <tbody id="stockTableBody" class="text-gray-700 divide-y divide-gray-200">
       </tbody>
     </table>
   </div>
+
+  <script>
+    const SUPABASE_URL = "https://xkrpljsulrjsmtmkeefc.supabase.co";
+    const SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrcnBsanN1bHJqc210bWtlZWZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyNTMxMDYsImV4cCI6MjA2MDgyOTEwNn0.r0-1UIWWs9esFIY3lc3Fz3IclRJSrPqx4D-hXvhOFvo";
+
+    fetch(`${SUPABASE_URL}/rest/v1/stock`, {
+      method: "GET",
+      headers: {
+        apikey: SUPABASE_API_KEY,
+        Authorization: `Bearer ${SUPABASE_API_KEY}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const tbody = document.getElementById("stockTableBody");
+        tbody.innerHTML = "";
+
+        data.forEach((item) => {
+          tbody.innerHTML += `
+            <tr>
+              <td class="py-3 px-4">${item.reference || ""}</td>
+              <td class="py-3 px-4">${item.designation || ""}</td>
+              <td class="py-3 px-4">${item.quantite || 0}</td>
+              <td class="py-3 px-4">${item.emplacement || ""}</td>
+              <td class="py-3 px-4">${item.prix_ht ? item.prix_ht.toFixed(2) + " €" : ""}</td>
+            </tr>
+          `;
+        });
+      })
+      .catch((err) => {
+        console.error("Erreur chargement Supabase :", err);
+      });
+  </script>
 </section>
