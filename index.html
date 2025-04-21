@@ -28,30 +28,31 @@
   <div class="flex min-h-screen">
     <!-- Menu vertical -->
     <aside id="sidebar" class="w-64 bg-white shadow-md fixed inset-y-0 left-0 transform -translate-x-full sm:translate-x-0 sm:relative transition-transform duration-200 ease-in-out z-50">
-      <div class="p-6 border-b">
-        <div class="flex items-center space-x-2">
-          <img src="logo.png" alt="Logo DDS" class="h-8 w-8" />
-          <h1 class="text-xl font-bold text-[#0094D9]">DDS Gestion</h1>
+      <div class="p-6 border-b flex items-center justify-between">
+        <div class="flex items-center space-x-2 transition-all duration-200 ease-in-out" id="logo-container">
+          <img src="logo.png" alt="Logo DDS" class="h-8 w-8" id="sidebar-logo" />
+          <h1 class="text-xl font-bold text-[#0094D9]" id="menu-title">DDS Gestion</h1>
         </div>
+        <button id="toggleSidebar" class="hidden sm:block text-[#0094D9] text-2xl ml-4">☰</button>
       </div>
       <nav class="p-4 space-y-3">
         <button onclick="showSection('accueil')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-          🏠 Accueil
+          🏠 <span class="menu-label">Accueil</span>
         </button>
         <button onclick="showSection('stock')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-          📊 Stock
+          📊 <span class="menu-label">Stock</span>
         </button>
         <button onclick="showSection('taches')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-          🔧 Tâches
+          🔧 <span class="menu-label">Tâches</span>
         </button>
         <button onclick="showSection('devis')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-          📄 Relevés de devis
+          📄 <span class="menu-label">Relevés de devis</span>
         </button>
       </nav>
     </aside>
 
     <!-- Contenu principal -->
-    <main class="flex-1 p-6 sm:ml-64">
+    <main class="flex-1 p-6 sm:ml-64 transition-all duration-300" id="mainContent">
       <!-- Section Accueil -->
       <section id="accueil" class="section">
         <div class="text-2xl font-semibold text-gray-800 mb-4">Bienvenue sur votre dashboard</div>
@@ -90,10 +91,25 @@
 
   <script>
     const menuBtn = document.getElementById('mobileMenuBtn');
+    const toggleSidebarBtn = document.getElementById('toggleSidebar');
     const sidebar = document.getElementById('sidebar');
+    const menuLabels = document.querySelectorAll('.menu-label');
+    const menuTitle = document.getElementById('menu-title');
+    const sidebarLogo = document.getElementById('sidebar-logo');
+    const mainContent = document.getElementById('mainContent');
 
     menuBtn?.addEventListener('click', () => {
       sidebar.classList.toggle('-translate-x-full');
+    });
+
+    toggleSidebarBtn?.addEventListener('click', () => {
+      sidebar.classList.toggle('w-64');
+      sidebar.classList.toggle('w-20');
+      mainContent.classList.toggle('sm:ml-64');
+      mainContent.classList.toggle('sm:ml-20');
+      menuLabels.forEach(label => label.classList.toggle('hidden'));
+      if (menuTitle) menuTitle.classList.toggle('hidden');
+      if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
     });
 
     function showSection(sectionId) {
