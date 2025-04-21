@@ -52,7 +52,7 @@
     </aside>
 
     <!-- Contenu principal -->
-    <main class="flex-1 p-6 sm:ml-64 transition-all duration-300" id="mainContent">
+    <main class="flex-1 p-6 sm:ml-64 transition-all duration-300" id="mainContent" id="mainContent">
       <!-- Section Accueil -->
       <section id="accueil" class="section">
         <div class="text-2xl font-semibold text-gray-800 mb-4">Bienvenue sur votre dashboard</div>
@@ -106,7 +106,7 @@
       sidebar.classList.toggle('w-64');
       sidebar.classList.toggle('w-20');
       mainContent.classList.toggle('sm:ml-64');
-      mainContent.classList.toggle('sm:ml-20');
+      mainContent.classList.toggle('sm:ml-[60px]');
       menuLabels.forEach(label => label.classList.toggle('hidden'));
       if (menuTitle) menuTitle.classList.toggle('hidden');
       if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
