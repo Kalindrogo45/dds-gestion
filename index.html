@@ -68,6 +68,7 @@
     .then(res => res.text())
     .then(html => {
       document.getElementById('sidebar-container').innerHTML = html;
+      document.getElementById('sidebar-container').innerHTML = html;
 
       const toggleSidebarBtn = document.getElementById('toggleSidebar');
       const sidebar = document.getElementById('sidebar');
@@ -89,6 +90,20 @@
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('-translate-x-full');
         sidebar.classList.toggle('translate-x-0');
+      });
+
+      // Ajout des actions aux boutons du menu injecté
+      document.querySelectorAll('[data-section]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const section = btn.getAttribute('data-section');
+          showSection(section);
+
+          // Fermer le menu mobile après clic
+          if (window.innerWidth < 640 && sidebar.classList.contains('translate-x-0')) {
+            sidebar.classList.add('-translate-x-full');
+            sidebar.classList.remove('translate-x-0');
+          }
+        });
       });
     });
   </script>
