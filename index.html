@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DDS Gestion</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -12,134 +12,18 @@
       --color-tertiaire: #F6931D;
     }
   </style>
+  <script src="script.js" defer></script>
 </head>
-<body class="bg-gray-100 font-sans">
-  <!-- Header mobile avec bouton menu -->
-  <header class="sm:hidden flex items-center justify-between bg-white p-4 shadow-md">
-    <div class="flex items-center space-x-2">
-      <img src="logo.png" alt="Logo DDS" class="h-8 w-8" />
-      <h1 class="text-xl font-bold text-[#0094D9]">DDS Gestion</h1>
-    </div>
-    <button id="mobileMenuBtn" class="text-[#0094D9] focus:outline-none">
-      ☰
-    </button>
-  </header>
-
+<body class="bg-gray-100">
   <div class="flex min-h-screen">
-    <!-- Menu vertical -->
-    <div id="sidebar-container" class="h-screen"></div>
-
-    <!-- Contenu principal -->
-    <div id="mainContentWrapper" class="flex-1 transition-all duration-300 sm:ml-64">
-      <main id="mainContent" class="p-6 transition-all duration-300 overflow-auto">
-        <!-- Section Accueil -->
-        <section id="accueil" class="section">
-          <div class="text-2xl font-semibold text-gray-800 mb-4">Bienvenue sur votre dashboard</div>
-          <div class="bg-white p-6 rounded shadow">
-            <p class="text-gray-600">
-              Sélectionnez une section dans le menu pour commencer : gestion du stock, tâches ou relevés de devis.
-            </p>
-          </div>
-        </section>
-
-        <!-- Autres sections -->
-        <section id="taches" class="section hidden">
-          <div class="text-2xl font-semibold text-gray-800 mb-4">🔧 Tâches à faire</div>
-        </section>
-
-        <section id="devis" class="section hidden">
-          <div class="text-2xl font-semibold text-gray-800 mb-4">📄 Relevés de devis</div>
-        </section>
-      </main>
+    <div id="sidebar-container" class="w-64"></div>
+    <div class="flex-1 flex flex-col">
+      <header class="bg-white shadow p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-[var(--color-primaire)]">DDS Gestion</h1>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-600 focus:outline-none">☰</button>
+      </header>
+      <main id="mainContent" class="p-6"></main>
     </div>
   </div>
-
-  <script>
-  function showSection(page) {
-    fetch(`${page}.html`)
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("mainContent").innerHTML = html;
-      });
-  }
-
-  // Chargement par défaut : accueil
-  showSection("accueil");
-
-  fetch('menu.html')
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('sidebar-container').innerHTML = html;
-
-      const toggleSidebarBtn = document.getElementById('toggleSidebar');
-      const sidebar = document.getElementById('sidebar');
-      const menuLabels = document.querySelectorAll('.menu-label');
-      const menuTitle = document.getElementById('menu-title');
-      const sidebarLogo = document.getElementById('sidebar-logo');
-
-      toggleSidebarBtn?.addEventListener('click', () => {
-        sidebar.classList.toggle('w-64');
-        sidebar.classList.toggle('w-20');
-        menuLabels.forEach(label => label.classList.toggle('hidden'));
-        if (menuTitle) menuTitle.classList.toggle('hidden');
-        if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
-      });
-
-      // Bouton menu mobile
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      mobileMenuBtn?.addEventListener('click', () => {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('-translate-x-full');
-        sidebar.classList.toggle('translate-x-0');
-      });
-
-      // Ajout des actions aux boutons du menu injecté
-      document.querySelectorAll('[data-section]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const section = btn.getAttribute('data-section');
-          showSection(section);
-
-          // Fermer le menu mobile après clic
-          if (window.innerWidth < 640 && sidebar.classList.contains('translate-x-0')) {
-            sidebar.classList.add('-translate-x-full');
-            sidebar.classList.remove('translate-x-0');
-          }
-        });
-      });
-    });
-  </script>
-<script>
-    const SUPABASE_URL = "https://xkrpljsulrjsmtmkeefc.supabase.co";
-    const SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrcnBsanN1bHJqc210bWtlZWZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyNTMxMDYsImV4cCI6MjA2MDgyOTEwNn0.r0-1UIWWs9esFIY3lc3Fz3IclRJSrPqx4D-hXvhOFvo";
-
-    fetch(`${SUPABASE_URL}/rest/v1/stock`, {
-        method: "GET",
-        headers: {
-            apikey: SUPABASE_API_KEY,
-            Authorization: `Bearer ${SUPABASE_API_KEY}`,
-            "Content-Type": "application/json"
-        }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        const tbody = document.getElementById("stockTableBody");
-        tbody.innerHTML = "";
-
-        data.forEach((item) => {
-            tbody.innerHTML += `
-                <tr>
-                    <td class="py-3 px-4">${item.reference || ""}</td>
-                    <td class="py-3 px-4">${item.designation || ""}</td>
-                    <td class="py-3 px-4">${item.quantite || 0}</td>
-                    <td class="py-3 px-4">${item.emplacement || ""}</td>
-                    <td class="py-3 px-4">${item.prix_ht ? item.prix_ht.toFixed(2) + " €" : ""}</td>
-                </tr>
-            `;
-        });
-    })
-    .catch((err) => {
-        console.error("Erreur de la requête Supabase:", err);
-    });
-</script>
 </body>
 </html>
