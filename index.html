@@ -1,80 +1,92 @@
-<!-- Section Stock (chargée dynamiquement via fetch, donc sans id ni hidden) -->
-<section class="relative">
-  <div class="text-2xl font-semibold text-gray-800 mb-4">📊 Gestion du stock</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DDS Gestion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --color-primaire: #0094D9;
+      --color-secondaire: #F05A22;
+      --color-tertiaire: #F6931D;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header mobile avec bouton menu -->
+  <header class="sm:hidden flex items-center justify-between bg-white p-4 shadow-md">
+    <div class="flex items-center space-x-2">
+      <img src="logo.png" alt="Logo DDS" class="h-8 w-8" />
+      <h1 class="text-xl font-bold text-[#0094D9]">DDS Gestion</h1>
+    </div>
+    <button id="mobileMenuBtn" class="text-[#0094D9] focus:outline-none">
+      ☰
+    </button>
+  </header>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
-    <a href="stock-table.html" class="cursor-pointer bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
-      <span class="text-sm">Stock total</span>
-      <span class="text-2xl font-bold">366</span>
-    </a>
-    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
-      <span class="text-sm">Valeur de stock</span>
-      <span class="text-2xl font-bold">54 852,09 €</span>
-    </div>
-    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
-      <span class="text-sm">Total des entrées</span>
-      <span class="text-2xl font-bold">992</span>
-    </div>
-    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
-      <span class="text-sm">Valeur des entrées</span>
-      <span class="text-2xl font-bold">291 428,95 €</span>
-    </div>
-    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
-      <span class="text-sm">Total des sorties</span>
-      <span class="text-2xl font-bold">702</span>
-    </div>
-    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
-      <span class="text-sm">Valeur des sorties</span>
-      <span class="text-2xl font-bold">297 931,00 €</span>
-    </div>
-  </div>
+  <div class="flex min-h-screen">
+    <!-- Menu vertical -->
+    <div id="sidebar-container" class="h-screen"></div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <div class="bg-white text-black p-4 rounded-xl shadow-md">
-      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Top 3 des marchandises</h2>
-      <ul class="space-y-2">
-        <li class="flex justify-between"><span>IPHONE 13 PRO</span> <span class="font-semibold">129 500 €</span></li>
-        <li class="flex justify-between"><span>GOOGLE PIXEL 5</span> <span class="font-semibold">42 010 €</span></li>
-        <li class="flex justify-between"><span>Cuisinière CANDY</span> <span class="font-semibold">35 400 €</span></li>
-      </ul>
-    </div>
-    <div class="bg-white text-black p-4 rounded-xl shadow-md">
-      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Total des entrées par mois</h2>
-      <p class="text-sm">Jan: 137 | Fév: 184 | Mars: 142 | Avr: 106 | Mai: 423</p>
-    </div>
-    <div class="bg-white text-black p-4 rounded-xl shadow-md">
-      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Total des sorties par mois</h2>
-      <p class="text-sm">Jan: 71 | Fév: 100 | Mars: 187 | Avr: 253 | Mai: 91</p>
-    </div>
-    <div class="bg-white text-black p-4 rounded-xl shadow-md">
-      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Marchandises à approvisionner</h2>
-      <ul class="space-y-2">
-        <li class="flex justify-between items-center">
-          <span>Cuisinière CANDY</span>
-          <span class="text-xs bg-red-100 text-red-500 font-bold px-2 py-1 rounded">Non disponible</span>
-        </li>
-        <li class="flex justify-between items-center">
-          <span>NINTENDO SWITCH</span>
-          <span class="text-xs bg-yellow-100 text-yellow-600 font-bold px-2 py-1 rounded">Stock faible</span>
-        </li>
-        <li class="flex justify-between items-center">
-          <span>Réfrigérateur WHIRLPOOL</span>
-          <span class="text-xs bg-yellow-100 text-yellow-600 font-bold px-2 py-1 rounded">Stock faible</span>
-        </li>
-      </ul>
-    </div>
-    <div class="bg-white text-black p-4 rounded-xl shadow-md">
-      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Valeur des entrées par mois</h2>
-      <p class="text-sm">Jan: 51 548 € | Fév: 76 664 € | Mars: 38 248 € | Avr: 48 081 € | Mai: 76 887 €</p>
-    </div>
-    <div class="bg-white text-black p-4 rounded-xl shadow-md">
-      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Valeur des sorties par mois</h2>
-      <p class="text-sm">Jan: 38 385 € | Fév: 60 320 € | Mars: 69 065 € | Avr: 74 985 € | Mai: 55 176 €</p>
-    </div>
-  </div>
+    <!-- Contenu principal -->
+    <main id="mainContent" class="flex-1 p-6 transition-all duration-300 overflow-auto">
+      <!-- Section Accueil -->
+      <section id="accueil" class="section">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">Bienvenue sur votre dashboard</div>
+        <div class="bg-white p-6 rounded shadow">
+          <p class="text-gray-600">
+            Sélectionnez une section dans le menu pour commencer : gestion du stock, tâches ou relevés de devis.
+          </p>
+        </div>
+      </section>
 
-  <!-- Bouton Ajouter produit en bas à droite -->
-  <button class="fixed bottom-6 right-6 bg-[var(--color-primaire)] hover:bg-[var(--color-secondaire)] text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center text-3xl">
-    +
-  </button>
+
+
+<!-- Autres sections -->
+<section id="taches" class="section hidden">
+  <div class="text-2xl font-semibold text-gray-800 mb-4">🔧 Tâches à faire</div>
 </section>
+
+<section id="devis" class="section hidden">
+  <div class="text-2xl font-semibold text-gray-800 mb-4">📄 Relevés de devis</div>
+</section>
+</main>
+</div>
+
+<script>
+function showSection(page) {
+  fetch(`${page}.html`)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById("mainContent").innerHTML = html;
+    });
+}
+
+// Chargement par défaut : accueil
+showSection("accueil");
+
+fetch('menu.html')
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById('sidebar-container').innerHTML = html;
+
+    const toggleSidebarBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const menuLabels = document.querySelectorAll('.menu-label');
+    const menuTitle = document.getElementById('menu-title');
+    const sidebarLogo = document.getElementById('sidebar-logo');
+
+    toggleSidebarBtn?.addEventListener('click', () => {
+      sidebar.classList.toggle('w-64');
+      sidebar.classList.toggle('w-20');
+      menuLabels.forEach(label => label.classList.toggle('hidden'));
+      if (menuTitle) menuTitle.classList.toggle('hidden');
+      if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
+    });
+  });
+
+
+</script>
+</body>
+</html>
