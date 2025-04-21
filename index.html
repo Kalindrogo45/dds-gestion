@@ -135,30 +135,31 @@
   </div>
 
   <script>
-    const toggleSidebarBtn = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-    const menuLabels = document.querySelectorAll('.menu-label');
-    const menuTitle = document.getElementById('menu-title');
-    const sidebarLogo = document.getElementById('sidebar-logo');
+  fetch('menu.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('sidebar-container').innerHTML = html;
 
-    toggleSidebarBtn?.addEventListener('click', () => {
-      sidebar.classList.toggle('w-64');
-      sidebar.classList.toggle('w-20');
-      menuLabels.forEach(label => label.classList.toggle('hidden'));
-      if (menuTitle) menuTitle.classList.toggle('hidden');
-      if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
+      const toggleSidebarBtn = document.getElementById('toggleSidebar');
+      const sidebar = document.getElementById('sidebar');
+      const menuLabels = document.querySelectorAll('.menu-label');
+      const menuTitle = document.getElementById('menu-title');
+      const sidebarLogo = document.getElementById('sidebar-logo');
+
+      toggleSidebarBtn?.addEventListener('click', () => {
+        sidebar.classList.toggle('w-64');
+        sidebar.classList.toggle('w-20');
+        menuLabels.forEach(label => label.classList.toggle('hidden'));
+        if (menuTitle) menuTitle.classList.toggle('hidden');
+        if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
+      });
     });
 
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(sec => sec.classList.add('hidden'));
-      document.getElementById(sectionId).classList.remove('hidden');
-    }
-    fetch('menu.html')
-     .then(res => res.text())
-     .then(html => {
-       document.getElementById('sidebar-container').innerHTML = html;
-    });
+  function showSection(sectionId) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(sectionId).classList.remove('hidden');
+  }
 </script>
 </body>
 </html>
