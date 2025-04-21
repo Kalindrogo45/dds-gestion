@@ -35,16 +35,16 @@
         </div>
       </div>
       <nav class="p-4 space-y-3">
-        <button class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+        <button onclick="showSection('accueil')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
           🏠 Accueil
         </button>
-        <button class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+        <button onclick="showSection('stock')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
           📊 Stock
         </button>
-        <button class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+        <button onclick="showSection('taches')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
           🔧 Tâches
         </button>
-        <button class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
+        <button onclick="showSection('devis')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
           📄 Relevés de devis
         </button>
       </nav>
@@ -52,12 +52,39 @@
 
     <!-- Contenu principal -->
     <main class="flex-1 p-6 sm:ml-64">
-      <div class="text-2xl font-semibold text-gray-800 mb-4">Bienvenue sur votre dashboard</div>
-      <div class="bg-white p-6 rounded shadow">
-        <p class="text-gray-600">
-          Sélectionnez une section dans le menu pour commencer : gestion du stock, tâches ou relevés de devis.
-        </p>
-      </div>
+      <!-- Section Accueil -->
+      <section id="accueil" class="section">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">Bienvenue sur votre dashboard</div>
+        <div class="bg-white p-6 rounded shadow">
+          <p class="text-gray-600">
+            Sélectionnez une section dans le menu pour commencer : gestion du stock, tâches ou relevés de devis.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section Stock -->
+      <section id="stock" class="section hidden">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">📊 Gestion du stock</div>
+        <div class="bg-white p-6 rounded shadow">
+          <button class="mb-4 bg-[#0094D9] text-white px-4 py-2 rounded hover:bg-[#007bb5]">➕ Ajouter un produit</button>
+          <div class="border-t pt-4">
+            <p class="text-gray-600">Liste des produits (prochainement dynamique) :</p>
+            <ul class="mt-2 list-disc list-inside text-gray-700">
+              <li>Produit A – Ref A123 – Qté: 10</li>
+              <li>Produit B – Ref B456 – Qté: 5</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Autres sections vides pour plus tard -->
+      <section id="taches" class="section hidden">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">🔧 Tâches à faire</div>
+      </section>
+
+      <section id="devis" class="section hidden">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">📄 Relevés de devis</div>
+      </section>
     </main>
   </div>
 
@@ -68,6 +95,12 @@
     menuBtn?.addEventListener('click', () => {
       sidebar.classList.toggle('-translate-x-full');
     });
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(sectionId).classList.remove('hidden');
+    }
   </script>
 </body>
 </html>
