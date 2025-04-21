@@ -1,67 +1,80 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DDS Gestion</title>
+<!-- Section Stock (chargée dynamiquement via fetch, donc sans id ni hidden) -->
+<section class="relative">
+  <div class="text-2xl font-semibold text-gray-800 mb-4">📊 Gestion du stock</div>
 
-  <style>
-  :root {
-    --color-primaire: #0094D9;
-    --color-secondaire: #F05A22;
-    --color-tertiaire: #F6931D;
-  }
-</style>
-
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="flex h-screen">
-  <!-- Menu latéral -->
-  <aside id="sidebar" class="w-64 h-screen bg-white shadow-md transition-all duration-300">
-    <div class="p-6 border-b flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <img src="logo.png" alt="Logo DDS" class="h-8 w-8" id="sidebar-logo" />
-        <h1 class="text-xl font-bold text-[#0094D9]" id="menu-title">DDS Gestion</h1>
-      </div>
-      <button id="toggleSidebar" class="hidden sm:block text-[#0094D9] text-2xl ml-4">☰</button>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
+    <a href="stock-table.html" class="cursor-pointer bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Stock total</span>
+      <span class="text-2xl font-bold">366</span>
+    </a>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Valeur de stock</span>
+      <span class="text-2xl font-bold">54 852,09 €</span>
     </div>
-    <nav class="p-4 space-y-3">
-      <button onclick="showSection('accueil')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-        🏠 <span class="menu-label">Accueil</span>
-      </button>
-      <button onclick="showSection('stock')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-        📊 <span class="menu-label">Stock</span>
-      </button>
-      <button onclick="showSection('taches')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-        🔧 <span class="menu-label">Tâches</span>
-      </button>
-      <button onclick="showSection('devis')" class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
-        📄 <span class="menu-label">Relevés de devis</span>
-      </button>
-    </nav>
-  </aside>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Total des entrées</span>
+      <span class="text-2xl font-bold">992</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Valeur des entrées</span>
+      <span class="text-2xl font-bold">291 428,95 €</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Total des sorties</span>
+      <span class="text-2xl font-bold">702</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Valeur des sorties</span>
+      <span class="text-2xl font-bold">297 931,00 €</span>
+    </div>
+  </div>
 
-  <!-- Contenu principal -->
-  <main class="flex-1 p-6 overflow-y-auto">
-    <div id="mainContent"></div>
-  </main>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="bg-white text-black p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Top 3 des marchandises</h2>
+      <ul class="space-y-2">
+        <li class="flex justify-between"><span>IPHONE 13 PRO</span> <span class="font-semibold">129 500 €</span></li>
+        <li class="flex justify-between"><span>GOOGLE PIXEL 5</span> <span class="font-semibold">42 010 €</span></li>
+        <li class="flex justify-between"><span>Cuisinière CANDY</span> <span class="font-semibold">35 400 €</span></li>
+      </ul>
+    </div>
+    <div class="bg-white text-black p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Total des entrées par mois</h2>
+      <p class="text-sm">Jan: 137 | Fév: 184 | Mars: 142 | Avr: 106 | Mai: 423</p>
+    </div>
+    <div class="bg-white text-black p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Total des sorties par mois</h2>
+      <p class="text-sm">Jan: 71 | Fév: 100 | Mars: 187 | Avr: 253 | Mai: 91</p>
+    </div>
+    <div class="bg-white text-black p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Marchandises à approvisionner</h2>
+      <ul class="space-y-2">
+        <li class="flex justify-between items-center">
+          <span>Cuisinière CANDY</span>
+          <span class="text-xs bg-red-100 text-red-500 font-bold px-2 py-1 rounded">Non disponible</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>NINTENDO SWITCH</span>
+          <span class="text-xs bg-yellow-100 text-yellow-600 font-bold px-2 py-1 rounded">Stock faible</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>Réfrigérateur WHIRLPOOL</span>
+          <span class="text-xs bg-yellow-100 text-yellow-600 font-bold px-2 py-1 rounded">Stock faible</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-white text-black p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Valeur des entrées par mois</h2>
+      <p class="text-sm">Jan: 51 548 € | Fév: 76 664 € | Mars: 38 248 € | Avr: 48 081 € | Mai: 76 887 €</p>
+    </div>
+    <div class="bg-white text-black p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Valeur des sorties par mois</h2>
+      <p class="text-sm">Jan: 38 385 € | Fév: 60 320 € | Mars: 69 065 € | Avr: 74 985 € | Mai: 55 176 €</p>
+    </div>
+  </div>
 
-  <script>
-    function showSection(page) {
-      fetch(`${page}.html`)
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById("mainContent").innerHTML = html;
-        })
-        .catch(error => {
-          console.error('Erreur lors du chargement de la section:', error);
-          document.getElementById("mainContent").innerHTML = "<p>Erreur lors du chargement de la section.</p>";
-        });
-    }
-
-    // Chargement par défaut : accueil
-    showSection("accueil");
-  </script>
-</body>
-</html>
+  <!-- Bouton Ajouter produit en bas à droite -->
+  <button class="fixed bottom-6 right-6 bg-[var(--color-primaire)] hover:bg-[var(--color-secondaire)] text-white rounded-full w-14 h-14 shadow-lg flex items-center justify-center text-3xl">
+    +
+  </button>
+</section>
