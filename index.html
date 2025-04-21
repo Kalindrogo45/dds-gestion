@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Gestion de Stock</title>
+  <title>DDS Gestion</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
@@ -16,7 +16,10 @@
 <body class="bg-gray-100 font-sans">
   <!-- Header mobile avec bouton menu -->
   <header class="sm:hidden flex items-center justify-between bg-white p-4 shadow-md">
-    <h1 class="text-xl font-bold text-[#0094D9]">Mon Appli</h1>
+    <div class="flex items-center space-x-2">
+      <img src="logo.png" alt="Logo DDS" class="h-8 w-8" />
+      <h1 class="text-xl font-bold text-[#0094D9]">DDS Gestion</h1>
+    </div>
     <button id="mobileMenuBtn" class="text-[#0094D9] focus:outline-none">
       ☰
     </button>
@@ -26,7 +29,10 @@
     <!-- Menu vertical -->
     <aside id="sidebar" class="w-64 bg-white shadow-md fixed inset-y-0 left-0 transform -translate-x-full sm:translate-x-0 sm:relative transition-transform duration-200 ease-in-out z-50">
       <div class="p-6 border-b">
-        <h1 class="text-xl font-bold text-[#0094D9]">Mon Appli</h1>
+        <div class="flex items-center space-x-2">
+          <img src="logo.png" alt="Logo DDS" class="h-8 w-8" />
+          <h1 class="text-xl font-bold text-[#0094D9]">DDS Gestion</h1>
+        </div>
       </div>
       <nav class="p-4 space-y-3">
         <button class="w-full text-left px-4 py-3 rounded-xl bg-[#0094D9] text-white font-semibold shadow hover:bg-[#007bb5]">
