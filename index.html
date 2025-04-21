@@ -27,7 +27,7 @@
 
   <div class="flex min-h-screen">
     <!-- Menu vertical -->
-   
+   <div id="sidebar-container"></div>
 
     <!-- Contenu principal -->
     <main id="mainContent" class="flex-1 p-6 transition-all duration-300 overflow-auto">
@@ -154,6 +154,11 @@
       sections.forEach(sec => sec.classList.add('hidden'));
       document.getElementById(sectionId).classList.remove('hidden');
     }
-  </script>
+    fetch('menu.html')
+     .then(res => res.text())
+     .then(html => {
+       document.getElementById('sidebar-container').innerHTML = html;
+    });
+</script>
 </body>
 </html>
