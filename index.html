@@ -41,65 +41,56 @@
         </div>
       </section>
 
+      <!-- Autres sections -->
+      <section id="taches" class="section hidden">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">🔧 Tâches à faire</div>
+      </section>
 
+      <section id="devis" class="section hidden">
+        <div class="text-2xl font-semibold text-gray-800 mb-4">📄 Relevés de devis</div>
+      </section>
+    </main>
+  </div>
 
-<!-- Autres sections -->
-<section id="taches" class="section hidden">
-  <div class="text-2xl font-semibold text-gray-800 mb-4">🔧 Tâches à faire</div>
-</section>
+  <script>
+  function showSection(page) {
+    fetch(`${page}.html`)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("mainContent").innerHTML = html;
+      });
+  }
 
-<section id="devis" class="section hidden">
-  <div class="text-2xl font-semibold text-gray-800 mb-4">📄 Relevés de devis</div>
-</section>
-</main>
-</div>
+  // Chargement par défaut : accueil
+  showSection("accueil");
 
-<script>
-function showSection(page) {
-  fetch(`${page}.html`)
+  fetch('menu.html')
     .then(res => res.text())
     .then(html => {
-      document.getElementById("mainContent").innerHTML = html;
-    });
-}
+      document.getElementById('sidebar-container').innerHTML = html;
 
-// Chargement par défaut : accueil
-showSection("accueil");
+      const toggleSidebarBtn = document.getElementById('toggleSidebar');
+      const sidebar = document.getElementById('sidebar');
+      const menuLabels = document.querySelectorAll('.menu-label');
+      const menuTitle = document.getElementById('menu-title');
+      const sidebarLogo = document.getElementById('sidebar-logo');
 
-fetch('menu.html')
-  .then(res => res.text())
-  .then(html => {
-    document.getElementById('sidebar-container').innerHTML = html;
-
-    const toggleSidebarBtn = document.getElementById('toggleSidebar');
-    const sidebar = document.getElementById('sidebar');
-    const menuLabels = document.querySelectorAll('.menu-label');
-    const menuTitle = document.getElementById('menu-title');
-    const sidebarLogo = document.getElementById('sidebar-logo');
-
-    toggleSidebarBtn?.addEventListener('click', () => {
-      sidebar.classList.toggle('w-64');
-      sidebar.classList.toggle('w-20');
-      menuLabels.forEach(label => label.classList.toggle('hidden'));
-      if (menuTitle) menuTitle.classList.toggle('hidden');
-      if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
-    });
-  });
-
-
-</script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const hamburger = document.getElementById("hamburger");
-    const sidebar = document.getElementById("sidebar");
-
-    if (hamburger && sidebar) {
-      hamburger.addEventListener("click", () => {
-        sidebar.classList.toggle("translate-x-0");
-        sidebar.classList.toggle("-translate-x-full");
+      toggleSidebarBtn?.addEventListener('click', () => {
+        sidebar.classList.toggle('w-64');
+        sidebar.classList.toggle('w-20');
+        menuLabels.forEach(label => label.classList.toggle('hidden'));
+        if (menuTitle) menuTitle.classList.toggle('hidden');
+        if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
       });
-    }
-  });
-</script>
+
+      // Bouton menu mobile
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      mobileMenuBtn?.addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('-translate-x-full');
+        sidebar.classList.toggle('translate-x-0');
+      });
+    });
+  </script>
 </body>
 </html>
