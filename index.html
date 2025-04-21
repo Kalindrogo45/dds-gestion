@@ -65,18 +65,77 @@
 
       <!-- Section Stock -->
       <section id="stock" class="section hidden">
-        <div class="text-2xl font-semibold text-gray-800 mb-4">📊 Gestion du stock</div>
-        <div class="bg-white p-6 rounded shadow">
-          <button class="mb-4 bg-[#0094D9] text-white px-4 py-2 rounded hover:bg-[#007bb5]">➕ Ajouter un produit</button>
-          <div class="border-t pt-4">
-            <p class="text-gray-600">Liste des produits (prochainement dynamique) :</p>
-            <ul class="mt-2 list-disc list-inside text-gray-700">
-              <li>Produit A – Ref A123 – Qté: 10</li>
-              <li>Produit B – Ref B456 – Qté: 5</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+  <div class="text-2xl font-semibold text-gray-800 mb-4">📊 Gestion du stock</div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-6">
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Stock total</span>
+      <span class="text-2xl font-bold">366</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Valeur de stock</span>
+      <span class="text-2xl font-bold">54 852,09 €</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Total des entrées</span>
+      <span class="text-2xl font-bold">992</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Valeur des entrées</span>
+      <span class="text-2xl font-bold">291 428,95 €</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Total des sorties</span>
+      <span class="text-2xl font-bold">702</span>
+    </div>
+    <div class="bg-[var(--color-primaire)] text-white p-4 rounded-xl shadow-md flex flex-col items-start">
+      <span class="text-sm">Valeur des sorties</span>
+      <span class="text-2xl font-bold">297 931,00 €</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-primaire)]">Top 3 des marchandises</h2>
+      <ul class="space-y-2">
+        <li class="flex justify-between"><span>IPHONE 13 PRO</span> <span class="font-semibold">129 500 €</span></li>
+        <li class="flex justify-between"><span>GOOGLE PIXEL 5</span> <span class="font-semibold">42 010 €</span></li>
+        <li class="flex justify-between"><span>Cuisinière CANDY</span> <span class="font-semibold">35 400 €</span></li>
+      </ul>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-secondaire)]">Total des entrées par mois</h2>
+      <p class="text-sm">Jan: 137 | Fév: 184 | Mars: 142 | Avr: 106 | Mai: 423</p>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-secondaire)]">Total des sorties par mois</h2>
+      <p class="text-sm">Jan: 71 | Fév: 100 | Mars: 187 | Avr: 253 | Mai: 91</p>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-tertiaire)]">Marchandises à approvisionner</h2>
+      <ul class="space-y-2">
+        <li class="flex justify-between items-center">
+          <span>Cuisinière CANDY</span>
+          <span class="text-xs bg-red-100 text-red-500 font-bold px-2 py-1 rounded">Non disponible</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>NINTENDO SWITCH</span>
+          <span class="text-xs bg-yellow-100 text-yellow-600 font-bold px-2 py-1 rounded">Stock faible</span>
+        </li>
+        <li class="flex justify-between items-center">
+          <span>Réfrigérateur WHIRLPOOL</span>
+          <span class="text-xs bg-yellow-100 text-yellow-600 font-bold px-2 py-1 rounded">Stock faible</span>
+        </li>
+      </ul>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-tertiaire)]">Valeur des entrées par mois</h2>
+      <p class="text-sm">Jan: 51 548 € | Fév: 76 664 € | Mars: 38 248 € | Avr: 48 081 € | Mai: 76 887 €</p>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow-md">
+      <h2 class="font-bold text-lg mb-2 text-[var(--color-tertiaire)]">Valeur des sorties par mois</h2>
+      <p class="text-sm">Jan: 38 385 € | Fév: 60 320 € | Mars: 69 065 € | Avr: 74 985 € | Mai: 55 176 €</p>
+    </div>
+  </div>
+</section>
 
       <!-- Autres sections vides pour plus tard -->
       <section id="taches" class="section hidden">
