@@ -30,7 +30,7 @@
     <div id="sidebar-container" class="h-screen"></div>
 
     <!-- Contenu principal -->
-    <div id="mainContentWrapper" class="flex-1 transition-all duration-300 ml-64">
+    <div id="mainContentWrapper" class="flex-1 transition-all duration-300 sm:ml-64">
       <main id="mainContent" class="p-6 transition-all duration-300 overflow-auto">
         <!-- Section Accueil -->
         <section id="accueil" class="section">
@@ -76,7 +76,6 @@
       const menuLabels = document.querySelectorAll('.menu-label');
       const menuTitle = document.getElementById('menu-title');
       const sidebarLogo = document.getElementById('sidebar-logo');
-      const mainContentWrapper = document.getElementById('mainContentWrapper');
 
       toggleSidebarBtn?.addEventListener('click', () => {
         sidebar.classList.toggle('w-64');
@@ -84,8 +83,6 @@
         menuLabels.forEach(label => label.classList.toggle('hidden'));
         if (menuTitle) menuTitle.classList.toggle('hidden');
         if (sidebarLogo) sidebarLogo.classList.toggle('hidden');
-        mainContentWrapper.classList.toggle('ml-64');
-        mainContentWrapper.classList.toggle('ml-20');
       });
 
       // Bouton menu mobile
