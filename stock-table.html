@@ -12,41 +12,8 @@
         </tr>
       </thead>
       <tbody id="stockTableBody" class="text-gray-700 divide-y divide-gray-200">
+        <!-- Les lignes du tableau seront insérées ici par le script dans index.html -->
       </tbody>
     </table>
   </div>
-
-  <script>
-    const SUPABASE_URL = "https://xkrpljsulrjsmtmkeefc.supabase.co";
-    const SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhrcnBsanN1bHJqc210bWtlZWZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDUyNTMxMDYsImV4cCI6MjA2MDgyOTEwNn0.r0-1UIWWs9esFIY3lc3Fz3IclRJSrPqx4D-hXvhOFvo";
-
-    fetch(`${SUPABASE_URL}/rest/v1/stock`, {
-      method: "GET",
-      headers: {
-        apikey: SUPABASE_API_KEY,
-        Authorization: `Bearer ${SUPABASE_API_KEY}`,
-        "Content-Type": "application/json"
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const tbody = document.getElementById("stockTableBody");
-        tbody.innerHTML = "";
-
-        data.forEach((item) => {
-          tbody.innerHTML += `
-            <tr>
-              <td class="py-3 px-4">${item.reference || ""}</td>
-              <td class="py-3 px-4">${item.designation || ""}</td>
-              <td class="py-3 px-4">${item.quantite || 0}</td>
-              <td class="py-3 px-4">${item.emplacement || ""}</td>
-              <td class="py-3 px-4">${item.prix_ht ? item.prix_ht.toFixed(2) + " €" : ""}</td>
-            </tr>
-          `;
-        });
-      })
-      .catch((err) => {
-        console.error("Erreur chargement Supabase :", err);
-      });
-  </script>
 </section>
